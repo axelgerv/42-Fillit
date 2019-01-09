@@ -6,7 +6,7 @@
 #    By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 13:16:25 by axelgerv          #+#    #+#              #
-#    Updated: 2019/01/07 15:32:29 by axelgerv         ###   ########.fr        #
+#    Updated: 2019/01/09 14:15:47 by axelgerv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ NAME = fillit
 IDIR = -Iincludes/ -Ilibft/includes
 
 SRC =  main.c \
-	   map.c
+	   generator_map.c \
+	   check_error.c \
+	   read_fd.c
+
 OBJ = $(SRC:.c=.o)
 
 CC = gcc

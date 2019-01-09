@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fillit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/06 15:42:19 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/09 14:15:23 by axelgerv         ###   ########.fr       */
+/*   Created: 2019/01/09 11:02:16 by axelgerv          #+#    #+#             */
+/*   Updated: 2019/01/09 12:31:19 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main(int argc, char **argv)
+int		fillit(int fd, char **storage)
 {
-	int		fd;
-	char	*storage;
+	int		rd;
+	char	*buf;
 	int		nbr_blocks;
-	t_tetri	**element;
 
 	nbr_blocks = 0;
-	if (argc != 2)
-		ft_putstr("usage: fillit target_file\n");
-	else if (argc == 2)
+	buf = ft_strnew(BUFF_SIZE);
+	*storage = ft_strnew(BUFF_SIZE);
+	while ((rd = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		fd = open(argv[1], O_RDONLY);
-		storage = NULL;
-		nbr_blocks = read_fd(fd, &storage);
-		if (nbr_blocks == -1)
-			return (0);
-		close(fd);
+		if (check_error(buf) == -1)
+		{
+			ft_putstr("error\n");
+			return (-1);
+		}
+		nbr_blocks++;
+		*storage = ft_strjoinf(storage, &buf, 1);
+		ft_strclr(buf);
 	}
-	if (!(element = (t_tetri **)malloc(sizeof(t_tetri *) * (nbr_blocks + 1))))
-		return (0);
-	ft_putstr(storage);
-	ft_putchar('\n');
-	ft_putnbr(nbr_blocks);
-	return (0);
+	return (nbr_blocks);
 }
