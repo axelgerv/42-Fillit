@@ -6,13 +6,13 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:14:04 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/09 15:34:26 by axelgerv         ###   ########.fr       */
+/*   Updated: 2019/01/10 10:11:28 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		read_fd(int fd, char **storage)
+int		read_fd(int fd, char **blocks)
 {
 	int		rd;
 	char	*buf;
@@ -28,7 +28,7 @@ int		read_fd(int fd, char **storage)
 			ft_putstr("error\n");
 			return (-1);
 		}
-		storage[nbr_blocks] = ft_strdup(buf);
+		blocks[nbr_blocks] = ft_strdup(buf);
 		nbr_blocks++;
 		ft_strclr(buf);
 	}

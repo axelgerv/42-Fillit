@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:51:48 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/09 14:14:34 by axelgerv         ###   ########.fr       */
+/*   Updated: 2019/01/10 12:11:56 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef	struct		s_tetri
 {
 	char			order;
-	char			tetri[5][5];
+	char			*tetri[5];
 	struct s_tetri	*next;
 }					t_tetri;
 
@@ -36,5 +36,7 @@ int					check_link(char *str);
 int					check_block_is_valid(char *buf);
 int					check_error(char *block);
 int					read_fd(int fd, char **storage);
+t_tetri				*new_element(char **block, int order);
+int					storage(char **block, t_tetri **tetri);
 
 #endif
