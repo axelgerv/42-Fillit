@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:30:29 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/14 11:11:29 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/14 17:52:35 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,30 @@
 
 int		placement(char **map, t_tetri *blocks, int x, int y)
 {
-	int i;
-	int xi;
-	int yi;
+	int blocks_x;
+	int blocks_y;
 
-	i = 0;
-	xi = x;
-	yi = y;
-	while (blocks->tetri[i])
+	blocks_y = 0;
+	while (blocks->tetri[blocks_y])
 	{
-		if (map[y][x] != '.' && blocks->tetri[i] != '.')
+		blocks_x = 0;
+		while (blocks->tetri[blocks_y][blocks_x])
 		{
-			delete_placement(map, blocks->order, xi, yi);
-			return (0);
+			if (blocks->tetri[blocks_y][blocks_x] == '#')
+			{
+				if ((!map[y + blocks_y][x + blocks_x]) || map[y + blocks_y][x + blocks_x] != '.')
+				{
+					delete_placement(map, blocks->order, x, y);
+					return (-1);
+				}
+				else
+					map[y + blocks_y][x + blocks_x] = blocks->order;
+			}
+			blocks_x++;
 		}
-		if (map[y][x] == '.')
-		{
-			if(blocks->tetri[i] == '#')
-				map[y][x] = blocks->order;
-			x++;
-			i++;
-		}
-		if (blocks->tetri[i] == '\n')
-		{
-			x = xi;
-			y++;
-			i++;
-		}
-		if (!map[y][x])
-		{
-			delete_placement(map, blocks->order, xi, yi);
-			return (0);
-		}
+		blocks_y++;
 	}
-	return (1);
+	return (0);
 }
 
 int		delete_placement(char **map, char letter, int x, int y)
@@ -83,8 +73,8 @@ int		backtracking(char **map, t_tetri **element, int side)
 	{
 		if(placement(map, element[i], x, y))
 		{
-				if (placement(map, element[i++], x, y))
-					return (0);
+			if (backtracking(map, element[i++], side))
+				return (0);
 		}
 		if ((x + 1) > side)
 		{
@@ -93,7 +83,7 @@ int		backtracking(char **map, t_tetri **element, int side)
 				x = 0;
 				y++;
 			}
-			else 
+			else
 				return (1);
 		}
 		x++;
@@ -107,14 +97,15 @@ int		fill_or_grow(t_tetri **element, int blocks)
 	char **map;
 	(void)blocks;
 
-	size = 10;
+	size = 4;
 	map = create_map(size);
-	while (!(backtracking(map, element, size)))
+	while (!backtracking(map, element, size))
 	{
-		print_map(map);
 		size++;
 		delete_map(map);
 		map = create_map(size);
 	}
+	print_map(map);
+	delete_map(map);
 	return (0);
 }

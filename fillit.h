@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:51:48 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/13 16:59:31 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/14 17:21:53 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef	struct		s_tetri
 {
 	char			order;
-	char			*tetri;
+	char			**tetri;
 }					t_tetri;
 
 char				**create_map(int side);
