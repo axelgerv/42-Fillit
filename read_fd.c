@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:14:04 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/10 19:37:56 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/13 15:44:49 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ int		read_fd(int fd, char **blocks)
 	buf = ft_strnew(BUFF);
 	while ((rd = read(fd, buf, BUFF)) > 0)
 	{
-		if (check_error(buf) == -1)
+		if (check_error(buf))
 		{
 			ft_strdel(&buf);
-			ft_putstr("error\n");
 			return (-1);
 		}
-		reduced = reduce(buf, check_x(buf), check_y(buf), check_x_max(buf));
-		blocks[nbr_blocks] = ft_strdup(reduced);
+		if (!(reduced = reduce(buf, check_x(buf), check_y(buf), check_x_max(buf))))
+			return(-1);
+		if(!(blocks[nbr_blocks] = ft_strdup(reduced)))
+			return (-1);
 		nbr_blocks++;
 		ft_strclr(buf);
 	}

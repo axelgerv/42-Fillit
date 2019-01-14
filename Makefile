@@ -6,7 +6,7 @@
 #    By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 13:16:25 by axelgerv          #+#    #+#              #
-#    Updated: 2019/01/10 19:45:07 by julaurai         ###   ########.fr        #
+#    Updated: 2019/01/11 16:04:25 by julaurai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC =  main.c \
 	   check_error.c \
 	   read_fd.c \
 	   reduce.c \
+	   placement.c \
 	   storage.c
 
 OBJ = $(SRC:.c=.o)
