@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:14:04 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/13 15:44:49 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:03:52 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,29 @@ int		read_fd(int fd, char **blocks)
 	char	*buf;
 	char	*reduced;
 	int		nbr_blocks;
+	char	*tmp;
 
+	tmp = ft_memalloc(21);
 	nbr_blocks = 0;
-	buf = ft_strnew(BUFF);
-	while ((rd = read(fd, buf, BUFF)) > 0)
+	buf = ft_memalloc(21);
+	while ((rd = read(fd, buf, 21)) > 0)
 	{
+		tmp = ft_strdup(buf);
 		if (check_error(buf))
 		{
 			ft_strdel(&buf);
 			return (-1);
 		}
-		if (!(reduced = reduce(buf, check_x(buf), check_y(buf), check_x_max(buf))))
-			return(-1);
-		if(!(blocks[nbr_blocks] = ft_strdup(reduced)))
+		if (check_error(buf) || !(reduced = reduce(buf, x_min(buf), y_min(buf), x_max(buf))))
+			return (-1);
+		if (!(blocks[nbr_blocks] = ft_strdup(reduced)))
 			return (-1);
 		nbr_blocks++;
 		ft_strclr(buf);
 	}
+	if (tmp[20] == '\n')
+		return (-1);
+	ft_strdel(&tmp);
 	ft_strdel(&buf);
-	blocks[nbr_blocks] = 0;
-	return (nbr_blocks);
+	return (nbr_blocks <= 26 ? nbr_blocks : 0);
 }

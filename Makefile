@@ -6,7 +6,7 @@
 #    By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 13:16:25 by axelgerv          #+#    #+#              #
-#    Updated: 2019/01/11 16:04:25 by julaurai         ###   ########.fr        #
+#    Updated: 2019/01/16 18:29:28 by julaurai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRC =  main.c \
 	   read_fd.c \
 	   reduce.c \
 	   placement.c \
+	   split.c \
+	   ft_countwords.c \
+	   ft_error.c \
 	   storage.c
 
 OBJ = $(SRC:.c=.o)
@@ -40,7 +43,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@make -C libft/ fclean && make -C libft/
 	@$(CC) -o $(NAME) $(IDIR) $(OBJ) libft/libft.a
-	@echo "[fillit] | Compilation						$(OK)"
+	@echo "[fillit] | Compilation			$(OK)"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(IDIR) -o $@ -c $<
@@ -48,11 +51,11 @@ $(NAME) : $(OBJ)
 clean :
 	@make clean -C libft/
 	@/bin/rm -f $(OBJ)
-	@echo "[fillit] | clean						$(OK)"
+	@echo "[fillit] | clean			$(OK)"
 
 fclean : clean
 	@make fclean -C libft/
 	@/bin/rm -f $(NAME)
-	@echo "[fillit] | fclean						$(OK)"
+	@echo "[fillit] | fclean			$(OK)"
 
 re : fclean all

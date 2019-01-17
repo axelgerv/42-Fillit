@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:45:45 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/11 11:35:07 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:22:53 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,33 @@ int		check_link(char *str)
 		return (-1);
 	return (0);
 }
+/*int		check_block_is_valid(char *buf)
+  {
+  int	i;
+  int	count;
 
+  i = -1;
+  count = 0;
+  while (++i < 20)
+  {
+  if ((i + 1) % 5)
+  {
+  if (buf[i] != '#' && buf[i] != '.')
+  return (0);
+  if (buf[i] == '#')
+  count++;
+  if (count > 4)
+  return (0);
+  }
+  else if (buf[i] != '\n')
+  return (0);
+  }
+  if (count < 4)
+  return (0);
+  if (buf[20] == '\n')
+  return (2);
+  return (1);
+  }*/
 int		check_block_is_valid(char *buf)
 {
 	int i;
@@ -73,7 +99,38 @@ int		check_block_is_valid(char *buf)
 		return (-1);
 	return (0);
 }
+/*int			check_block_is_valid(char *buf)
+{
+	int i;
+	int j;
+	int tetri;
+	int letter;
 
+	j = 4;
+	tetri = 0;
+	letter = 0;
+	i = -1;
+	while (buf[++i])
+	{
+		if (buf[i] != '.' && buf[i] != '\n' && buf[i] != '#')
+			return (-1);
+		else
+			letter++;
+		if (buf[i] == '#')
+			tetri++;
+		if (buf[i] == '\n')
+		{
+			if (i % j != 0)
+				return (-1);
+			j = j + 5;
+		}
+	}
+	if (buf[20] == '\n' || buf[20] == '\0')
+		letter++;
+	if (letter != 21 || tetri != 4)
+		return (-1);
+	return (0);
+}*/
 int		check_error(char *block)
 {
 	int i;

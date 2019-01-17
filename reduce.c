@@ -6,13 +6,13 @@
 /*   By: julaurai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 19:41:14 by julaurai          #+#    #+#             */
-/*   Updated: 2019/01/13 17:30:33 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:12:15 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		check_x(char *buf)
+int		x_min(char *buf)
 {
 	int i;
 	int x;
@@ -28,7 +28,7 @@ int		check_x(char *buf)
 	return (x);
 }
 
-int		check_x_max(char *buf)
+int		x_max(char *buf)
 {
 	int i;
 	int x;
@@ -44,7 +44,7 @@ int		check_x_max(char *buf)
 	return (x);
 }
 
-int		check_y(char *buf)
+int		y_min(char *buf)
 {
 	int i;
 	int y;
@@ -87,7 +87,7 @@ int		ft_strlen_tetri(char *buf, int x_min, int y, int x_max)
 			k++;
 		i++;
 	}
-	return (k);
+	return (k + 1);
 }
 
 char	*reduce(char *buf, int x_min, int y, int x_max)
@@ -100,7 +100,7 @@ char	*reduce(char *buf, int x_min, int y, int x_max)
 	int		len;
 
 	len = ft_strlen_tetri(buf, x_min, y, x_max) + 1;
-	if (!(reduced = (char*)malloc(sizeof(char) * len)))
+	if (!(reduced = (char*)ft_memalloc(sizeof(char) * len)))
 		return (NULL);
 	i = 0;
 	count = 0;
@@ -127,6 +127,5 @@ char	*reduce(char *buf, int x_min, int y, int x_max)
 		}
 		i++;
 	}
-	reduced[len] = '\0';
 	return (reduced);
 }

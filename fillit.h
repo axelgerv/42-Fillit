@@ -6,14 +6,12 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:51:48 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/14 17:21:53 by axelgerv         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:12:53 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
-# define BUFF 21
 
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -36,15 +34,20 @@ int					delete_placement(char **map, char letter, int x, int y);
 int					placement(char **map, t_tetri *blocks, int x, int y);
 int					ft_len(char *buf, int x_m,int y, int x_M);
 int					check_link(char *str);
-int					check_y(char *buf);
-int					check_x(char *buf);
-int					check_x_max(char *buf);
+int					y_min(char *buf);
+int					ft_error();
+int					x_min(char *buf);
+int					x_max(char *buf);
+char				**ft_split(char const *s, char c);
+int			get_word_len(char const *str, char c);
+int					ft_countwords(char const *str, char c);
 int					check_block_is_valid(char *buf);
+void				move_vector(int *y, int *x, int map_size);
 int					check_error(char *block);
 int					read_fd(int fd, char **storage);
 t_tetri				*new_element(char **block, int order);
 int					storage(char **block, t_tetri **tetri);
-int					backtracking(char **map ,t_tetri **element, int side);
-int					fill_or_grow(t_tetri **element, int blocks);
+int					backtracking(char **map ,t_tetri **element, int side, int order);
+int					fill_or_grow(t_tetri **element, int nbr_blocks);
 
 #endif

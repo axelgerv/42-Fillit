@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 13:58:44 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/07 15:01:08 by axelgerv         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:41:30 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ char	**create_map(int side)
 	char	**map;
 	int		i;
 
-	if (!(map = (char **)malloc(sizeof(char *) * (side + 1))))
+	if (!(map = (char **)ft_memalloc(sizeof(char *) * (side + 1))))
 		return (NULL);
 	i = side;
 	map[i--] = 0;
 	while (i >= 0)
 	{
-		if (!(map[i] = ft_strnew(side)))
+		if (!(map[i] = ft_memalloc(side)))
 			return (NULL);
 		ft_memset(map[i--], 46, side);
 	}
