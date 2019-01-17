@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:16:39 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/16 18:08:29 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/17 10:53:31 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_tetri	*new_element(char **block, int order)
 	block_list->tetri = NULL;
 	block_list->order = 0;
 	block_list->order = order + 'A';
-	block_list->tetri = ft_split(block[order], '\n');
+	block_list->tetri = ft_strsplit(block[order], '\n');
 	return (block_list);
 }
 

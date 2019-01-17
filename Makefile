@@ -6,7 +6,7 @@
 #    By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 13:16:25 by axelgerv          #+#    #+#              #
-#    Updated: 2019/01/16 18:29:28 by julaurai         ###   ########.fr        #
+#    Updated: 2019/01/17 10:47:02 by axelgerv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,6 @@ SRC =  main.c \
 	   read_fd.c \
 	   reduce.c \
 	   placement.c \
-	   split.c \
-	   ft_countwords.c \
 	   ft_error.c \
 	   storage.c
 

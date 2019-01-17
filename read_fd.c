@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:14:04 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/16 18:03:52 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/17 10:48:37 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		read_fd(int fd, char **blocks)
 			ft_strdel(&buf);
 			return (-1);
 		}
-		if (check_error(buf) || !(reduced = reduce(buf, x_min(buf), y_min(buf), x_max(buf))))
+		if (!(reduced = reduce(buf, x_min(buf), y_min(buf), x_max(buf))))
 			return (-1);
 		if (!(blocks[nbr_blocks] = ft_strdup(reduced)))
 			return (-1);
