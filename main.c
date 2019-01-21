@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 15:42:19 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/16 18:28:38 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:54:38 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(int argc, char **argv)
 	if (!(blocks = (char**)ft_memalloc(sizeof(char*) * (27))))
 		return (ft_error());
 	if (argc != 2)
-		ft_putstr("usage: ./fillit target_file\n");
+		ft_putstr("usage: ./fillit <target_file>\n");
 	else if (argc == 2)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) < 0)

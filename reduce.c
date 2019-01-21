@@ -6,13 +6,13 @@
 /*   By: julaurai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 19:41:14 by julaurai          #+#    #+#             */
-/*   Updated: 2019/01/16 17:12:15 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/18 09:05:46 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		x_min(char *buf)
+static int		x(char *buf)
 {
 	int i;
 	int x;
@@ -28,7 +28,7 @@ int		x_min(char *buf)
 	return (x);
 }
 
-int		x_max(char *buf)
+static int		xmax(char *buf)
 {
 	int i;
 	int x;
@@ -44,7 +44,7 @@ int		x_max(char *buf)
 	return (x);
 }
 
-int		y_min(char *buf)
+static int		ymin(char *buf)
 {
 	int i;
 	int y;
@@ -62,7 +62,7 @@ int		y_min(char *buf)
 	return (y);
 }
 
-int		ft_strlen_tetri(char *buf, int x_min, int y, int x_max)
+static int		len_tetri(char *buf, int x_min, int y, int x_max)
 {
 	int i;
 	int j;
@@ -90,42 +90,31 @@ int		ft_strlen_tetri(char *buf, int x_min, int y, int x_max)
 	return (k + 1);
 }
 
-char	*reduce(char *buf, int x_min, int y, int x_max)
+char			*reduce(char *b)
 {
-	char	*reduced;
+	char	*r;
 	int		i;
 	int		j;
 	int		k;
 	int		count;
-	int		len;
 
-	len = ft_strlen_tetri(buf, x_min, y, x_max) + 1;
-	if (!(reduced = (char*)ft_memalloc(sizeof(char) * len)))
+	if (!(r = ft_memalloc(len_tetri(b, x(b), ymin(b), xmax(b)) + 1)))
 		return (NULL);
-	i = 0;
+	i = -1;
 	count = 0;
 	j = 0;
-	k = 0;
-	while (buf[i])
+	k = -1;
+	while (b[++i])
 	{
-		buf[i] == '#' ? count++ : 0;
-		if (buf[i] == '\n')
+		b[i] == '#' ? count++ : 0;
+		if (b[i] == '\n')
 		{
-			if (j >= y)
-			{
-				reduced[k] = buf[i];
-				k++;
-			}
+			j >= ymin(b) ? r[++k] = b[i] : 0;
 			j++;
 			if (count == 4)
 				break ;
 		}
-		if (i % 5 >= x_min && i % 5 <= x_max && j >= y)
-		{
-			reduced[k] = buf[i];
-			k++;
-		}
-		i++;
+		i % 5 >= x(b) && i % 5 <= xmax(b) && j >= ymin(b) ? r[++k] = b[i] : 0;
 	}
-	return (reduced);
+	return (r);
 }

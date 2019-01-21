@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   generator_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: julaurai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/07 13:58:44 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/07 17:47:54 by axelgerv         ###   ########.fr       */
+/*   Created: 2019/01/17 11:48:48 by julaurai          #+#    #+#             */
+/*   Updated: 2019/01/17 13:47:39 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**create_map(int side)
 	char	**map;
 	int		i;
 
-	if (!(map = (char **)malloc(sizeof(char *) * (side + 1))))
+	if (!(map = (char **)ft_memalloc(sizeof(char *) * (side + 1))))
 		return (NULL);
 	i = side;
 	map[i--] = 0;
@@ -57,4 +57,20 @@ void	delete_map(char **map)
 	while (map[i])
 		ft_strdel(&map[i++]);
 	free(map);
+}
+
+int		map_size(int nbr_blocks)
+{
+	int i;
+
+	i = 0;
+	while (i < nbr_blocks)
+	{
+		if (i * i == nbr_blocks)
+			return (i);
+		if (i * i > nbr_blocks)
+			return (i - 1);
+		i++;
+	}
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:45:45 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/16 16:22:53 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/18 09:03:47 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		check_link(char *str)
+static int		check_link(char *str)
 {
 	int	i;
 	int	count;
@@ -38,34 +38,21 @@ int		check_link(char *str)
 		return (-1);
 	return (0);
 }
-/*int		check_block_is_valid(char *buf)
-  {
-  int	i;
-  int	count;
 
-  i = -1;
-  count = 0;
-  while (++i < 20)
-  {
-  if ((i + 1) % 5)
-  {
-  if (buf[i] != '#' && buf[i] != '.')
-  return (0);
-  if (buf[i] == '#')
-  count++;
-  if (count > 4)
-  return (0);
-  }
-  else if (buf[i] != '\n')
-  return (0);
-  }
-  if (count < 4)
-  return (0);
-  if (buf[20] == '\n')
-  return (2);
-  return (1);
-  }*/
-int		check_block_is_valid(char *buf)
+static int		check_block2(char buf, int *dot, int *tetri, int *eof)
+{
+	if (buf != '.' && buf != '\n' && buf != '#')
+		return (-1);
+	if (buf == '.')
+		*dot += 1;
+	if (buf == '#')
+		*tetri += 1;
+	if (buf == '\n')
+		*eof += 1;
+	return (0);
+}
+
+static int		check_block_is_valid(char *buf)
 {
 	int i;
 	int j;
@@ -75,63 +62,26 @@ int		check_block_is_valid(char *buf)
 
 	eof = 0;
 	j = 4;
-	i = 0;
+	i = -1;
 	dot = 0;
 	tetri = 0;
-	while (buf[i])
+	while (buf[++i])
 	{
-		if (buf[i] != '.' && buf[i] != '\n' && buf[i] != '#')
-			return (-1);
 		if (buf[i] == '\n' && i != 20)
-		{
 			if (i % j != 0)
 				return (-1);
+		if (buf[i] == '\n' && i != 20)
 			j = j + 5;
-		}
-		buf[i] == '.' ? dot++ : 0;
-		buf[i] == '#' ? tetri++ : 0;
-		buf[i] == '\n' ? eof++ : 0;
-		i++;
+		if (check_block2(buf[i], &dot, &tetri, &eof))
+			return (-1);
 	}
-	if (buf[20] == '\0')
-		eof++;
+	buf[20] == '\0' ? eof++ : 0;
 	if (dot != 12 || tetri != 4 || eof != 5)
 		return (-1);
 	return (0);
 }
-/*int			check_block_is_valid(char *buf)
-{
-	int i;
-	int j;
-	int tetri;
-	int letter;
 
-	j = 4;
-	tetri = 0;
-	letter = 0;
-	i = -1;
-	while (buf[++i])
-	{
-		if (buf[i] != '.' && buf[i] != '\n' && buf[i] != '#')
-			return (-1);
-		else
-			letter++;
-		if (buf[i] == '#')
-			tetri++;
-		if (buf[i] == '\n')
-		{
-			if (i % j != 0)
-				return (-1);
-			j = j + 5;
-		}
-	}
-	if (buf[20] == '\n' || buf[20] == '\0')
-		letter++;
-	if (letter != 21 || tetri != 4)
-		return (-1);
-	return (0);
-}*/
-int		check_error(char *block)
+int				check_error(char *block)
 {
 	int i;
 

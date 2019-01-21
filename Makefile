@@ -6,7 +6,7 @@
 #    By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 13:16:25 by axelgerv          #+#    #+#              #
-#    Updated: 2019/01/17 10:47:02 by axelgerv         ###   ########.fr        #
+#    Updated: 2019/01/18 09:10:04 by julaurai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC =  main.c \
 	   check_error.c \
 	   read_fd.c \
 	   reduce.c \
-	   placement.c \
+	   backtracking.c \
 	   ft_error.c \
 	   storage.c
 
