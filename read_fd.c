@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:14:04 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/21 14:21:49 by axelgerv         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:09:53 by axelgerv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int		read_fd(int fd, char **blocks)
 			return (clean_exit(&buf, &tmp, &reduced, -1));
 		if (!(blocks[nbr_blocks] = ft_strdup(reduced)))
 			return (clean_exit(&buf, &tmp, &reduced, -1));
+		ft_strdel(&reduced);
 		nbr_blocks++;
 		ft_strclr(buf);
 	}
 	if (tmp[20] == '\n')
 		return (-1);
 	clean_exit(&buf, &tmp, &reduced, 0);
-	free(reduced);
 	return (nbr_blocks <= 26 ? nbr_blocks : 0);
 }
