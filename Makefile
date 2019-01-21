@@ -6,7 +6,7 @@
 #    By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 13:16:25 by axelgerv          #+#    #+#              #
-#    Updated: 2019/01/18 09:10:04 by julaurai         ###   ########.fr        #
+#    Updated: 2019/01/21 14:33:45 by axelgerv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@make -C libft/ fclean && make -C libft/
 	@$(CC) -o $(NAME) $(IDIR) $(OBJ) libft/libft.a
-	@echo "[fillit] | Compilation			$(OK)"
+	@echo "[fillit] | Compilation						$(OK)"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(IDIR) -o $@ -c $<
@@ -49,11 +49,11 @@ $(NAME) : $(OBJ)
 clean :
 	@make clean -C libft/
 	@/bin/rm -f $(OBJ)
-	@echo "[fillit] | clean			$(OK)"
+	@echo "[fillit] | clean						$(OK)"
 
 fclean : clean
 	@make fclean -C libft/
 	@/bin/rm -f $(NAME)
-	@echo "[fillit] | fclean			$(OK)"
+	@echo "[fillit] | fclean						$(OK)"
 
 re : fclean all
