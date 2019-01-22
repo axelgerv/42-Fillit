@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:51:48 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/18 09:06:30 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:28:53 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char				**create_map(int side);
 char				*reduce(char *buf);
 void				print_map(char **map);
 void				delete_map(char **map);
+void				del_struct(t_tetri **tetri);
 int					map_size(int nbr_blocks);
 int					ft_len(char *buf, int x_m, int y, int x_max);
 int					read_fd(int fd, char **storage);

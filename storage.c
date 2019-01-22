@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:16:39 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/21 14:20:33 by axelgerv         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:32:03 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,30 @@ int				storage(char **block, t_tetri **tetri)
 		block[i] = NULL;
 		i++;
 	}
+	free(block);
 	return (0);
+}
+
+void			del_struct(t_tetri **tetri)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (tetri[i])
+	{
+		j = 0;
+		while (tetri[i]->tetri[j])
+		{
+			free(tetri[i]->tetri[j]);
+			tetri[i]->tetri[j] = NULL;
+			j++;
+		}
+		free(tetri[i]->tetri);
+		free(tetri[i]);
+		i++;
+	}
+	free(tetri);
+	tetri = NULL;
 }

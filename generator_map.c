@@ -6,7 +6,7 @@
 /*   By: julaurai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 11:48:48 by julaurai          #+#    #+#             */
-/*   Updated: 2019/01/17 13:47:39 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:31:28 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	delete_map(char **map)
 
 	i = 0;
 	while (map[i])
-		ft_strdel(&map[i++]);
+	{
+		ft_strdel(&map[i]);
+		i++;
+	}
 	free(map);
 }
 

@@ -6,7 +6,7 @@
 /*   By: julaurai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 09:08:45 by julaurai          #+#    #+#             */
-/*   Updated: 2019/01/18 09:08:48 by julaurai         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:26:20 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ int				fill_or_grow(t_tetri **tetri, int nbr_blocks)
 	}
 	print_map(map);
 	delete_map(map);
+	del_struct(tetri);
 	return (0);
 }

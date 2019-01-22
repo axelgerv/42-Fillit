@@ -6,7 +6,7 @@
 /*   By: axelgerv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:14:04 by axelgerv          #+#    #+#             */
-/*   Updated: 2019/01/21 15:09:53 by axelgerv         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:10:16 by julaurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		read_fd(int fd, char **blocks)
 	int		nbr_blocks;
 	char	*tmp;
 
-	tmp = ft_memalloc(sizeof(char) * 21);
-	buf = ft_memalloc(sizeof(char) * 21);
+	tmp = ft_memalloc(sizeof(char) * 22);
+	buf = ft_memalloc(sizeof(char) * 22);
 	nbr_blocks = 0;
 	while ((rd = read(fd, buf, 21)) > 0)
 	{
